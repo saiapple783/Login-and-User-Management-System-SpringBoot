@@ -1,13 +1,15 @@
 package com.loginProject.loginProject.Repository;
 
 import com.loginProject.loginProject.Model.Login;
-import org.springframework.data.jpa.repository.JpaRepository;
+
+import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface logInRepo extends JpaRepository<Login,Integer > {
+public interface logInRepo extends MongoRepository<Login, String> {
     Login findByUsername(String username);
 
+    Login findByToken(String token);
 }
 
 /*

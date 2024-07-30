@@ -1,33 +1,49 @@
 package com.loginProject.loginProject.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
+import java.time.LocalDateTime;
+
+@Document(collection = "Details")
 public class Login {
 
+    private String token;
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
     private String username;
     private String password;
+    private String email;
+    private LocalDateTime expiryDate;
 
     public Login() {
     }
 
-    public Login(Long id, String username, String password) {
+    public Login(String token, String id, String username, String password, String email, LocalDateTime expiryDate) {
+        this.token = token;
         this.id = id;
         this.username = username;
         this.password = password;
+        this.email = email;
+        this.expiryDate = expiryDate;
     }
 
-    public Long getId() {
+    // Getters and setters...
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -45,5 +61,21 @@ public class Login {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public LocalDateTime getExpiryDate() {
+        return expiryDate;
+    }
+
+    public void setExpiryDate(LocalDateTime expiryDate) {
+        this.expiryDate = expiryDate;
     }
 }
